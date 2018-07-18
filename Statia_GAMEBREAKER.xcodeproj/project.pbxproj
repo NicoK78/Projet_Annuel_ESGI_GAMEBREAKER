@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03677C5B20FE07C0008BEDBB /* Alamoquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03677C5A20FE07C0008BEDBB /* Alamoquest.swift */; };
+		03677C5D20FE1179008BEDBB /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03677C5C20FE1179008BEDBB /* Club.swift */; };
+		03677C5F20FE1182008BEDBB /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03677C5E20FE1182008BEDBB /* League.swift */; };
+		03677C6120FE11CA008BEDBB /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03677C6020FE11CA008BEDBB /* Competition.swift */; };
+		038A722820F66F4C008A3A06 /* StatsTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A722720F66F4C008A3A06 /* StatsTeam.swift */; };
+		038A722A20F6B73E008A3A06 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A722920F6B73D008A3A06 /* Player.swift */; };
+		038A722C20F6B973008A3A06 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A722B20F6B973008A3A06 /* Team.swift */; };
+		038A722E20F6BA4D008A3A06 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A722D20F6BA4D008A3A06 /* Match.swift */; };
+		03E5AC1A20DE76FA001F1E07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5AC1920DE76FA001F1E07 /* AppDelegate.swift */; };
+		03E5AC1C20DE76FA001F1E07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5AC1B20DE76FA001F1E07 /* ViewController.swift */; };
+		03E5AC1F20DE76FA001F1E07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E5AC1D20DE76FA001F1E07 /* Main.storyboard */; };
+		03E5AC2220DE76FA001F1E07 /* Statia_GAMEBREAKER.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03E5AC2020DE76FA001F1E07 /* Statia_GAMEBREAKER.xcdatamodeld */; };
+		03E5AC2420DE7705001F1E07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03E5AC2320DE7705001F1E07 /* Assets.xcassets */; };
+		03E5AC2720DE7705001F1E07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E5AC2520DE7705001F1E07 /* LaunchScreen.storyboard */; };
+		03E5AC3020DE7935001F1E07 /* GameBreakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5AC2E20DE7935001F1E07 /* GameBreakerViewController.swift */; };
+		03E5AC3120DE7935001F1E07 /* GameBreakerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E5AC2F20DE7935001F1E07 /* GameBreakerViewController.xib */; };
+		03E5AC3720E94E0D001F1E07 /* PopupOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5AC3520E94E0D001F1E07 /* PopupOverViewController.swift */; };
+		03E5AC3820E94E0D001F1E07 /* PopupOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E5AC3620E94E0D001F1E07 /* PopupOverViewController.xib */; };
+		03E5AC3B20E96A1F001F1E07 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5AC3920E96A1F001F1E07 /* LoginViewController.swift */; };
+		03E5AC3C20E96A1F001F1E07 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E5AC3A20E96A1F001F1E07 /* LoginViewController.xib */; };
+		03E5AC4120E96AE2001F1E07 /* logo_Statia.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E5AC4020E96AE2001F1E07 /* logo_Statia.png */; };
+		03E5AC4320E96D76001F1E07 /* background_blue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 03E5AC4220E96D76001F1E07 /* background_blue.jpg */; };
+		03E5AC4620E979B0001F1E07 /* SelectMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E5AC4420E979B0001F1E07 /* SelectMatchViewController.swift */; };
+		03E5AC4720E979B0001F1E07 /* SelectMatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E5AC4520E979B0001F1E07 /* SelectMatchViewController.xib */; };
+		03FCCFEA20FD1C04006E84C5 /* MatchEventPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FCCFE920FD1C04006E84C5 /* MatchEventPlayer.swift */; };
+		EF9BF3EFA106A19D67E464A8 /* Pods_Statia_GAMEBREAKER.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB7A8F322E47A216B19738A /* Pods_Statia_GAMEBREAKER.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		03677C5A20FE07C0008BEDBB /* Alamoquest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alamoquest.swift; sourceTree = "<group>"; };
+		03677C5C20FE1179008BEDBB /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
+		03677C5E20FE1182008BEDBB /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
+		03677C6020FE11CA008BEDBB /* Competition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
+		038A722720F66F4C008A3A06 /* StatsTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTeam.swift; sourceTree = "<group>"; };
+		038A722920F6B73D008A3A06 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		038A722B20F6B973008A3A06 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		038A722D20F6BA4D008A3A06 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		03E5AC1620DE76FA001F1E07 /* Statia_GAMEBREAKER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Statia_GAMEBREAKER.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		03E5AC1920DE76FA001F1E07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		03E5AC1B20DE76FA001F1E07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		03E5AC1E20DE76FA001F1E07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		03E5AC2120DE76FA001F1E07 /* Statia_GAMEBREAKER.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Statia_GAMEBREAKER.xcdatamodel; sourceTree = "<group>"; };
+		03E5AC2320DE7705001F1E07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		03E5AC2620DE7705001F1E07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		03E5AC2820DE7705001F1E07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03E5AC2E20DE7935001F1E07 /* GameBreakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBreakerViewController.swift; sourceTree = "<group>"; };
+		03E5AC2F20DE7935001F1E07 /* GameBreakerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameBreakerViewController.xib; sourceTree = "<group>"; };
+		03E5AC3520E94E0D001F1E07 /* PopupOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupOverViewController.swift; sourceTree = "<group>"; };
+		03E5AC3620E94E0D001F1E07 /* PopupOverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupOverViewController.xib; sourceTree = "<group>"; };
+		03E5AC3920E96A1F001F1E07 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		03E5AC3A20E96A1F001F1E07 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		03E5AC4020E96AE2001F1E07 /* logo_Statia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_Statia.png; sourceTree = "<group>"; };
+		03E5AC4220E96D76001F1E07 /* background_blue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background_blue.jpg; sourceTree = "<group>"; };
+		03E5AC4420E979B0001F1E07 /* SelectMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMatchViewController.swift; sourceTree = "<group>"; };
+		03E5AC4520E979B0001F1E07 /* SelectMatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectMatchViewController.xib; sourceTree = "<group>"; };
+		03FCCFE920FD1C04006E84C5 /* MatchEventPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEventPlayer.swift; sourceTree = "<group>"; };
+		7DB7A8F322E47A216B19738A /* Pods_Statia_GAMEBREAKER.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Statia_GAMEBREAKER.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		949E30E7A96280F03A0D1EF9 /* Pods-Statia_GAMEBREAKER.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Statia_GAMEBREAKER.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Statia_GAMEBREAKER/Pods-Statia_GAMEBREAKER.debug.xcconfig"; sourceTree = "<group>"; };
+		94ED9257A1A8EC02AF620D62 /* Pods-Statia_GAMEBREAKER.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Statia_GAMEBREAKER.release.xcconfig"; path = "Pods/Target Support Files/Pods-Statia_GAMEBREAKER/Pods-Statia_GAMEBREAKER.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		03E5AC1320DE76F9001F1E07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF9BF3EFA106A19D67E464A8 /* Pods_Statia_GAMEBREAKER.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		038A722620F66EFA008A3A06 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				038A722720F66F4C008A3A06 /* StatsTeam.swift */,
+				038A722920F6B73D008A3A06 /* Player.swift */,
+				038A722B20F6B973008A3A06 /* Team.swift */,
+				038A722D20F6BA4D008A3A06 /* Match.swift */,
+				03FCCFE920FD1C04006E84C5 /* MatchEventPlayer.swift */,
+				03677C5C20FE1179008BEDBB /* Club.swift */,
+				03677C5E20FE1182008BEDBB /* League.swift */,
+				03677C6020FE11CA008BEDBB /* Competition.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		03E5AC0D20DE76F9001F1E07 = {
+			isa = PBXGroup;
+			children = (
+				03E5AC1820DE76FA001F1E07 /* Statia_GAMEBREAKER */,
+				03E5AC1720DE76FA001F1E07 /* Products */,
+				93E615F06A09DF2E6029C323 /* Pods */,
+				E1C86BF34D7C6B3D46886D51 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		03E5AC1720DE76FA001F1E07 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				03E5AC1620DE76FA001F1E07 /* Statia_GAMEBREAKER.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		03E5AC1820DE76FA001F1E07 /* Statia_GAMEBREAKER */ = {
+			isa = PBXGroup;
+			children = (
+				038A722620F66EFA008A3A06 /* model */,
+				03E5AC3220DE81DC001F1E07 /* assets */,
+				03E5AC1920DE76FA001F1E07 /* AppDelegate.swift */,
+				03E5AC1B20DE76FA001F1E07 /* ViewController.swift */,
+				03E5AC1D20DE76FA001F1E07 /* Main.storyboard */,
+				03E5AC2320DE7705001F1E07 /* Assets.xcassets */,
+				03E5AC2520DE7705001F1E07 /* LaunchScreen.storyboard */,
+				03E5AC2820DE7705001F1E07 /* Info.plist */,
+				03E5AC2020DE76FA001F1E07 /* Statia_GAMEBREAKER.xcdatamodeld */,
+				03E5AC2E20DE7935001F1E07 /* GameBreakerViewController.swift */,
+				03E5AC2F20DE7935001F1E07 /* GameBreakerViewController.xib */,
+				03E5AC3520E94E0D001F1E07 /* PopupOverViewController.swift */,
+				03E5AC3620E94E0D001F1E07 /* PopupOverViewController.xib */,
+				03E5AC3920E96A1F001F1E07 /* LoginViewController.swift */,
+				03E5AC3A20E96A1F001F1E07 /* LoginViewController.xib */,
+				03E5AC4420E979B0001F1E07 /* SelectMatchViewController.swift */,
+				03E5AC4520E979B0001F1E07 /* SelectMatchViewController.xib */,
+				03677C5A20FE07C0008BEDBB /* Alamoquest.swift */,
+			);
+			path = Statia_GAMEBREAKER;
+			sourceTree = "<group>";
+		};
+		03E5AC3220DE81DC001F1E07 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				03E5AC4220E96D76001F1E07 /* background_blue.jpg */,
+				03E5AC4020E96AE2001F1E07 /* logo_Statia.png */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		93E615F06A09DF2E6029C323 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				949E30E7A96280F03A0D1EF9 /* Pods-Statia_GAMEBREAKER.debug.xcconfig */,
+				94ED9257A1A8EC02AF620D62 /* Pods-Statia_GAMEBREAKER.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E1C86BF34D7C6B3D46886D51 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7DB7A8F322E47A216B19738A /* Pods_Statia_GAMEBREAKER.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		03E5AC1520DE76F9001F1E07 /* Statia_GAMEBREAKER */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03E5AC2B20DE7705001F1E07 /* Build configuration list for PBXNativeTarget "Statia_GAMEBREAKER" */;
+			buildPhases = (
+				8DB1E9101E51172E681BC038 /* [CP] Check Pods Manifest.lock */,
+				03E5AC1220DE76F9001F1E07 /* Sources */,
+				03E5AC1320DE76F9001F1E07 /* Frameworks */,
+				03E5AC1420DE76F9001F1E07 /* Resources */,
+				D76C11F960878FF2E23B45C2 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Statia_GAMEBREAKER;
+			productName = Statia_GAMEBREAKER;
+			productReference = 03E5AC1620DE76FA001F1E07 /* Statia_GAMEBREAKER.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		03E5AC0E20DE76F9001F1E07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = Statia;
+				TargetAttributes = {
+					03E5AC1520DE76F9001F1E07 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 03E5AC1120DE76F9001F1E07 /* Build configuration list for PBXProject "Statia_GAMEBREAKER" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 03E5AC0D20DE76F9001F1E07;
+			productRefGroup = 03E5AC1720DE76FA001F1E07 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				03E5AC1520DE76F9001F1E07 /* Statia_GAMEBREAKER */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		03E5AC1420DE76F9001F1E07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03E5AC4120E96AE2001F1E07 /* logo_Statia.png in Resources */,
+				03E5AC4320E96D76001F1E07 /* background_blue.jpg in Resources */,
+				03E5AC2720DE7705001F1E07 /* LaunchScreen.storyboard in Resources */,
+				03E5AC2420DE7705001F1E07 /* Assets.xcassets in Resources */,
+				03E5AC3C20E96A1F001F1E07 /* LoginViewController.xib in Resources */,
+				03E5AC1F20DE76FA001F1E07 /* Main.storyboard in Resources */,
+				03E5AC4720E979B0001F1E07 /* SelectMatchViewController.xib in Resources */,
+				03E5AC3820E94E0D001F1E07 /* PopupOverViewController.xib in Resources */,
+				03E5AC3120DE7935001F1E07 /* GameBreakerViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8DB1E9101E51172E681BC038 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Statia_GAMEBREAKER-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D76C11F960878FF2E23B45C2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Statia_GAMEBREAKER/Pods-Statia_GAMEBREAKER-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Statia_GAMEBREAKER/Pods-Statia_GAMEBREAKER-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		03E5AC1220DE76F9001F1E07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				038A722820F66F4C008A3A06 /* StatsTeam.swift in Sources */,
+				03E5AC3B20E96A1F001F1E07 /* LoginViewController.swift in Sources */,
+				03E5AC1C20DE76FA001F1E07 /* ViewController.swift in Sources */,
+				03677C5D20FE1179008BEDBB /* Club.swift in Sources */,
+				03E5AC2220DE76FA001F1E07 /* Statia_GAMEBREAKER.xcdatamodeld in Sources */,
+				03E5AC3720E94E0D001F1E07 /* PopupOverViewController.swift in Sources */,
+				03E5AC1A20DE76FA001F1E07 /* AppDelegate.swift in Sources */,
+				03677C6120FE11CA008BEDBB /* Competition.swift in Sources */,
+				03FCCFEA20FD1C04006E84C5 /* MatchEventPlayer.swift in Sources */,
+				03E5AC4620E979B0001F1E07 /* SelectMatchViewController.swift in Sources */,
+				038A722A20F6B73E008A3A06 /* Player.swift in Sources */,
+				038A722E20F6BA4D008A3A06 /* Match.swift in Sources */,
+				038A722C20F6B973008A3A06 /* Team.swift in Sources */,
+				03E5AC3020DE7935001F1E07 /* GameBreakerViewController.swift in Sources */,
+				03677C5F20FE1182008BEDBB /* League.swift in Sources */,
+				03677C5B20FE07C0008BEDBB /* Alamoquest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		03E5AC1D20DE76FA001F1E07 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03E5AC1E20DE76FA001F1E07 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		03E5AC2520DE7705001F1E07 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03E5AC2620DE7705001F1E07 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		03E5AC2920DE7705001F1E07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		03E5AC2A20DE7705001F1E07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		03E5AC2C20DE7705001F1E07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 949E30E7A96280F03A0D1EF9 /* Pods-Statia_GAMEBREAKER.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Statia_GAMEBREAKER/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.statia.Statia-GAMEBREAKER";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		03E5AC2D20DE7705001F1E07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94ED9257A1A8EC02AF620D62 /* Pods-Statia_GAMEBREAKER.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Statia_GAMEBREAKER/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.statia.Statia-GAMEBREAKER";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		03E5AC1120DE76F9001F1E07 /* Build configuration list for PBXProject "Statia_GAMEBREAKER" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03E5AC2920DE7705001F1E07 /* Debug */,
+				03E5AC2A20DE7705001F1E07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03E5AC2B20DE7705001F1E07 /* Build configuration list for PBXNativeTarget "Statia_GAMEBREAKER" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03E5AC2C20DE7705001F1E07 /* Debug */,
+				03E5AC2D20DE7705001F1E07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		03E5AC2020DE76FA001F1E07 /* Statia_GAMEBREAKER.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				03E5AC2120DE76FA001F1E07 /* Statia_GAMEBREAKER.xcdatamodel */,
+			);
+			currentVersion = 03E5AC2120DE76FA001F1E07 /* Statia_GAMEBREAKER.xcdatamodel */;
+			path = Statia_GAMEBREAKER.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 03E5AC0E20DE76F9001F1E07 /* Project object */;
+}
