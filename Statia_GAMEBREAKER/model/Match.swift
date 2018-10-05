@@ -24,6 +24,7 @@ class Match : Mappable {
         date <- map["date"]
         homeGoal <- map["home_goal"]
         awayGoal <- map["away_goal"]
+        state <- map["state"]
     }
     
     
@@ -35,7 +36,8 @@ class Match : Mappable {
             "tournament": tournament.id as Any,
             "date" : date as Any,
             "home_goal" : homeGoal as Any,
-            "away_goal" : awayGoal as Any
+            "away_goal" : awayGoal as Any,
+            "state" : state as Any
         ]
     }
     
@@ -48,14 +50,15 @@ class Match : Mappable {
         ]
     }
     
-    var id : Int!
+    var id = Int()
     var home = Team()
     var away = Team()
     var tournament = Competition()
-    var date : String!
-    var day : Int?
-    var homeGoal :Int!
-    var awayGoal: Int!
+    var date = String()
+    var day = Int()
+    var homeGoal = Int()
+    var awayGoal = Int()
+    var state = Int()
     
     
     

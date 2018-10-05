@@ -17,11 +17,13 @@ class StatsTeam : Mappable {
     }
     
     
-    var id :Int?
-    var idTeam :Int!
-    var idMatch :Int!
-    var team: Team?
-    var match: Match?
+    var id = Int()
+    var idTeam = Int()
+    var idMatch = Int()
+    var idAnalyst = Int()
+    var team = Team()
+    var match = Match()
+    var analyste = Analyst()
     var possession = 50
     // Players Stats
     var passSucceed = 0
@@ -77,6 +79,7 @@ class StatsTeam : Mappable {
         id <- map["idStatistiquesMatch"]
         idMatch <- map["match"]
         idTeam <- map["team"]
+        idAnalyst <- map["analyst"]
         possession <- map["possession"]
         passSucceed <- map["passe_reussie"]
         passFailed <- map["passe_ratee"]
@@ -101,6 +104,7 @@ class StatsTeam : Mappable {
             "idStatistiquesMatch": id,
             "match": idMatch,
             "team": idTeam,
+            "analyst": idAnalyst,
             "possession": possession,
             "passe_reussie": passSucceed,
             "passe_ratee": passFailed,

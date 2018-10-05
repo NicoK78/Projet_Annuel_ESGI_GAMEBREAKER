@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class LoginViewController: UIViewController {
 
@@ -33,8 +34,33 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func connection(_ sender: Any) {
-        let homeView = SelectMatchViewController(nibName: "SelectMatchViewController", bundle: nil)
-        self.navigationController?.pushViewController(homeView, animated: true)
+        print("IN CONNECT FUNCTION")
+        if (textfieldUsername.text != "" && textfieldPassword.text != ""){
+            let username = textfieldUsername.text
+            let password = textfieldPassword.text
+            
+            let parameter: Parameters = [
+                "username":username ?? "",
+                "password":password ?? ""
+            ]
+            
+            Alamoquest.login(parameter: parameter, completionHandler: { (analyst) in
+                print("JSON : \(analyst.toJSON())")
+                if (analyst.id == -1){
+                    let alert = UIAlertController(title: "Attention", message: "Identifiant ou mot de passe incorect", preferredStyle: .alert)
+
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+                    self.present(alert, animated: true)
+                }else{
+//                    if let analyst =
+                    print("=========> ANALYSTE : \(analyst.id)")
+                    UserDefaults.standard.set(analyst.id, forKey: "idAnalyst")
+                    let homeView = SelectMatchViewController(nibName: "SelectMatchViewController", bundle: nil)
+                    self.navigationController?.pushViewController(homeView, animated: true)
+                }
+            })
+        }
     }
     
     /*

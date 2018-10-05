@@ -4,11 +4,12 @@
 //
 //  Created by Nico on 23/06/2018.
 //  Copyright © 2018 Statia. All rights reserved.
-//& @@@
+//
 
 import UIKit
 import AVKit
 import AVFoundation
+import SwiftyJSON
 //import SwiftyPickerPopover
 
 class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
@@ -25,7 +26,7 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
     var textfieldLastPass: UITextField!
     var indexSecondTF = -1
     var textfieldMinutes: UITextField!
-
+    
     let goalActions = ["Ballon capté", "Ballon repoussé", "Interception aérienne", "Interception dans les pieds", "Interception aérienne ratée", "Interception dans les pieds ratée"]
     
     var isPrimaryTF = true
@@ -35,57 +36,81 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     // PICKERVIEW FUNCTIONS
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        if(self.isPassAndGoal || self.isGoalAction) {
+            return 2
+        } else {
+            return 1
+        }
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if(isGoalAction) {
-            return goalActions.count
-        } else {
+        if(component == 0) {
             if(!self.switchTeam.isOn) {
                 return homePlayers.count
             } else {
                 return awayPlayers.count
             }
+        } else if(component == 1 && !self.isGoalAction) {
+            if(!self.switchTeam.isOn) {
+                return homePlayers.count+1
+            } else {
+                return awayPlayers.count+1
+            }
+        } else {
+            return goalActions.count
         }
     }
     // This function sets the text of the picker view to the content of the array
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if(isGoalAction) {
-            return goalActions[row]
-        } else {
-            if(!self.switchTeam.isOn) {
-                return ("\(String(describing: (homePlayers[row].firstname)!)) \(String(describing: (homePlayers[row].name)!))")
+        if(component == 0 || (component == 1 && !self.isGoalAction)) {
+            if(component == 0) {
+                if(!self.switchTeam.isOn) {
+                    return ("\(String(describing: (homePlayers[row].firstname))) \(String(describing: (homePlayers[row].name)))")
+                } else {
+                    return ("\(String(describing: (awayPlayers[row].firstname))) \(String(describing: (awayPlayers[row].name)))")
+                }
+            } else if(component == 1 && row == 0) {
+                return ("NO ASSIST")
             } else {
-                return ("\(String(describing: (awayPlayers[row].firstname)!)) \(String(describing: (awayPlayers[row].name)!))")
+                if(!self.switchTeam.isOn) {
+                    return ("\(String(describing: (homePlayers[row-1].firstname))) \(String(describing: (homePlayers[row-1].name)))")
+                } else {
+                    return ("\(String(describing: (awayPlayers[row-1].firstname))) \(String(describing: (awayPlayers[row-1].name)))")
+                }
             }
+        } else {
+            return goalActions[row]
         }
     }
     // When user selects an option, this function will set the text of the text field to reflect
     // the selected option.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if(isGoalAction) {
-            textfieldPlayer.text = goalActions[row]
+        if(component == 0) {
+            if(!self.switchTeam.isOn) {
+                textfieldPlayer.text = "\(String(describing: (homePlayers[row].firstname))) \(String(describing: (homePlayers[row].name)))"
+            } else {
+                textfieldPlayer.text = ("\(String(describing: (awayPlayers[row].firstname))) \(String(describing: (awayPlayers[row].name)))")
+            }
             indexFirstTF = row
         } else {
-            if(self.isPrimaryTF) {
-                if(!self.switchTeam.isOn) {
-                    textfieldPlayer.text = "\(String(describing: (homePlayers[row].firstname)!)) \(String(describing: (homePlayers[row].name)!))"
-                } else {
-                    textfieldPlayer.text = ("\(String(describing: (awayPlayers[row].firstname)!)) \(String(describing: (awayPlayers[row].name)!))")
-                }
-                indexFirstTF = row
-            } else {
-                if(!self.switchTeam.isOn) {
-                    textfieldLastPass.text = "\(String(describing: (homePlayers[row].firstname)!)) \(String(describing: (homePlayers[row].name)!))"
-                } else {
-                    textfieldLastPass.text = ("\(String(describing: (awayPlayers[row].firstname)!)) \(String(describing: (awayPlayers[row].name)!))")
-                }
-                self.isPrimaryTF = true
+            if(self.isGoalAction) {
+                textfieldLastPass.text = goalActions[row]
                 indexSecondTF = row
+            } else {
+                if(row == 0) {
+                    textfieldLastPass.text = nil
+                    indexSecondTF = -1
+                } else {
+                    if(!self.switchTeam.isOn) {
+                        textfieldLastPass.text = "\(String(describing: (homePlayers[row-1].firstname))) \(String(describing: (homePlayers[row-1].name)))"
+                    } else {
+                        textfieldLastPass.text = ("\(String(describing: (awayPlayers[row-1].firstname))) \(String(describing: (awayPlayers[row-1].name)))")
+                    }
+                    indexSecondTF = row-1
+                }
             }
         }
     }
-
+    
     
     var homeTeam: Team?
     var awayTeam: Team?
@@ -93,8 +118,8 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
     var homeStats: StatsTeam?
     var awayStats: StatsTeam?
     /*
-    **  BUTTONS AND LABELS
-    */
+     **  BUTTONS AND LABELS
+     */
     @IBOutlet var home: UILabel!
     @IBOutlet var away: UILabel!
     @IBOutlet var switchTeam: UISwitch!
@@ -303,11 +328,8 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
     func playerAction(title: String, message: String) {
         // 1
         let selectPlayerController: UIAlertController
-        if(isGoalAction) {
-            selectPlayerController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        } else {
-            selectPlayerController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        }
+        selectPlayerController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
         // 2
         let selectAction = UIAlertAction(title: "Valider", style: UIAlertActionStyle.default) { (action:UIAlertAction) -> Void in
             
@@ -315,24 +337,27 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
             let playerTextField = selectPlayerController.textFields![1]
             let lastPassTextField: UITextField
             let secondPlayer: Player?
-
+            
+            var teamPlayers: Array<Player>
+            if (!self.switchTeam.isOn) {
+                teamPlayers = self.homePlayers
+            } else {
+                teamPlayers = self.awayPlayers
+            }
+            
             if(self.isPassAndGoal) {
                 lastPassTextField = selectPlayerController.textFields![2]
                 
                 if(lastPassTextField.text == "") {
                     secondPlayer = nil
                 } else {
-                    secondPlayer = (self.homePlayers[self.indexSecondTF])
+                    secondPlayer = (teamPlayers[self.indexSecondTF])
                 }
             } else {
                 secondPlayer = nil
             }
-//
-            if(self.isGoalAction) {
-                self.setMatchEvent(player: (self.homePlayers[0]), minutes: Int(minutesTextField.text!)!, secondPlayer: secondPlayer)
-            } else {
-                self.setMatchEvent(player: (self.homePlayers[self.indexFirstTF]), minutes: Int(minutesTextField.text!)!, secondPlayer: secondPlayer)
-            }
+            
+            self.setMatchEvent(player: (teamPlayers[self.indexFirstTF]), minutes: Int(minutesTextField.text!)!, secondPlayer: secondPlayer)
             
             self.isGoalAction = false
             self.isPassAndGoal = false
@@ -360,43 +385,49 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
         
         // 4
         selectPlayerController.addTextField { (textField:UITextField!) -> Void in
-
+            
             textField.placeholder = "Minutes"
-
+            
             textField.keyboardType = UIKeyboardType.numberPad
-
+            
             self.textfieldMinutes = textField
-
+            
         }
         selectPlayerController.addTextField { (textField:UITextField!) -> Void in
             
             if(self.isGoalAction) {
-                textField.placeholder = "Action"
+                textField.placeholder = "Gardien"
             } else if(self.isPassAndGoal) {
                 textField.placeholder = "Buteur"
             } else {
                 textField.placeholder = "Joueur"
             }
-            textField.keyboardType = UIKeyboardType.alphabet
             
+            let toolBar = UIToolbar()
+            toolBar.barStyle = .default
+            toolBar.isTranslucent = true
+            toolBar.sizeToFit()
+            
+            toolBar.isUserInteractionEnabled = true
+            
+            textField.inputView = self.pickerView
+            textField.inputAccessoryView = toolBar
             self.textfieldPlayer = textField
-            self.textfieldPlayer.inputView = self.pickerView
             
+            textField.resignFirstResponder()
         }
-        if(self.isPassAndGoal) {
+        if(self.isPassAndGoal || self.isGoalAction) {
             selectPlayerController.addTextField { (textField2:UITextField!) -> Void in
                 
-                textField2.placeholder = "Passeur décisif"
-                
-                textField2.keyboardType = UIKeyboardType.alphabet
-                
-                textField2.addTarget(self, action: #selector(self.changeTF), for: UIControlEvents.touchDown)
+                if(self.isPassAndGoal) {
+                    textField2.placeholder = "Passeur décisif"
+                } else if(self.isGoalAction) {
+                    textField2.placeholder = "Action"
+                }
                 self.textfieldLastPass = textField2
-                self.textfieldLastPass.inputView = self.pickerView
                 
             }
         }
-        // 6
         selectPlayerController.addAction(selectAction)
         selectPlayerController.addAction(cancelAction)
         // 7
@@ -411,7 +442,9 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pickerView.backgroundColor = UIColor.white
         pickerView.delegate = self
+        pickerView.dataSource = self
         
         home.text = homeTeam?.name
         away.text = awayTeam?.name
@@ -429,6 +462,7 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
         
         self.toolbarItems = items // this made the difference. setting the items to the controller, not the navigationcontroller
         
+        // TODO : Récupérer joueurs de la composition
         Alamoquest.getPlayerByTeam(id: (homeTeam?.id)!) { (players) in
             for player in players {
                 self.homePlayers.append(player)
@@ -441,25 +475,133 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
         }
         
         setValues(teamStats: homeStats)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        passSucceed.addGestureRecognizer(tap)
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        passFailed.addGestureRecognizer(tap1)
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        duelWin.addGestureRecognizer(tap2)
+        let tap3 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        duelLost.addGestureRecognizer(tap3)
+        let tap4 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        centerSucceed.addGestureRecognizer(tap4)
+        let tap5 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        centerFailed.addGestureRecognizer(tap5)
+        let tap6 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        shotIn.addGestureRecognizer(tap6)
+        let tap7 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        shotOut.addGestureRecognizer(tap7)
+        let tap8 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        shotCountered.addGestureRecognizer(tap8)
+        let tap9 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        cornerObtained.addGestureRecognizer(tap9)
+        let tap10 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        ballConceded.addGestureRecognizer(tap10)
+        let tap11 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        offSide.addGestureRecognizer(tap11)
+        let tap12 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        interception.addGestureRecognizer(tap12)
+        let tap13 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        foul.addGestureRecognizer(tap13)
+        let tap14 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        penalty.addGestureRecognizer(tap14)
+        let tap15 = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        clearance.addGestureRecognizer(tap15)
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        
+        var label: UILabel
+        label = sender.view as! UILabel
+        
+        let tmpLabel = self.view.viewWithTag(label.tag) as? UILabel
+        var tmpTeam: StatsTeam
+        tmpTeam = (switchTeam.isOn ? awayStats : homeStats)!
+        
+        if(tmpLabel!.text != "0") {
+            tmpLabel!.text = String(Int(tmpLabel!.text!)! - 1)
+            
+            switch label.tag {
+            case 1:
+                tmpTeam.passSucceed -= 1
+            case 2:
+                tmpTeam.passFailed -= 1
+            case 3:
+                tmpTeam.duelWin -= 1
+            case 4:
+                tmpTeam.duelLost -= 1
+            case 5:
+                tmpTeam.centerSucceed -= 1
+            case 6:
+                tmpTeam.centerFailed -= 1
+            case 7:
+                tmpTeam.shotIn -= 1
+            case 8:
+                tmpTeam.shotOut -= 1
+            case 9:
+                tmpTeam.shotCountered -= 1
+            case 10:
+                tmpTeam.cornerObtained -= 1
+            case 11:
+                tmpTeam.ballConceded -= 1
+            case 12:
+                tmpTeam.offSide -= 1
+            case 13:
+                tmpTeam.interception -= 1
+            case 14:
+                tmpTeam.foul -= 1
+            case 15:
+                tmpTeam.penalty -= 1
+            case 16:
+                tmpTeam.clearance -= 1
+            default:
+                print("NOTHING")
+            }
+            
+        }
+        
     }
     
     // SAVE STATS OF BOTH TEAMS THEN BACK TO SELECTMATCH VIEW
     @objc func add() {
         let alert = UIAlertController(title: "Avez-vous terminé ?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Valider", style: .default) { (action:UIAlertAction) -> Void in
-
+            
             Alamoquest.postStatsMatchForTeam(statsTeam: self.homeStats!, completionHandler: { (statsTeam) in
-                print(statsTeam.toJSON())
-                let events: Array<MatchEventPlayer>
-                events = (self.homeStats?.goalInGame)! + (self.homeStats?.goalFreekick)! + (self.homeStats?.goalPenalty)! + (self.homeStats?.goalAgainst)!
+                print("###### START POST ######")
                 
-                for e in events {
-                    e.idStatsMatch = statsTeam.id!
-                    Alamoquest.postMatchEventPlayer(matchEventPlayer: e, completionHandler: { (matchEventPlayer) in
-                        
-                    })
-                }
+                // SEND PLAYER EVENTS FOR HOMETEAM
+                var events: Array<MatchEventPlayer>
+                events = (self.homeStats?.goalInGame)! + (self.homeStats?.goalFreekick)! + (self.homeStats?.goalPenalty)! + (self.homeStats?.goalAgainst)!
+                events = events + (self.homeStats?.yellowCard)! + (self.homeStats?.redCard)! + (self.homeStats?.goalInGameLastPass)!
+                self.sendMatchEvents(events: events, idStatsTeam: statsTeam.id)
+                
+                // SEND GOAL EVENTS FOR HOMETEAM
+                self.sendMatchEvents(events: (self.homeStats?.goalEvent)!, idStatsTeam: statsTeam.id)
             })
+            
+            Alamoquest.postStatsMatchForTeam(statsTeam: self.awayStats!, completionHandler: { (statsTeam) in
+                // SEND PLAYER EVENTS FOR AWAYTEAM
+                var events: Array<MatchEventPlayer>
+                events = (self.awayStats?.goalInGame)! + (self.awayStats?.goalFreekick)! + (self.awayStats?.goalPenalty)! + (self.awayStats?.goalAgainst)!
+                events = events + (self.awayStats?.yellowCard)! + (self.awayStats?.redCard)! + (self.awayStats?.goalInGameLastPass)!
+                self.sendMatchEvents(events: events, idStatsTeam: statsTeam.id)
+                
+                // SEND GOAL EVENTS FOR AWAYTEAM
+                self.sendMatchEvents(events: (self.awayStats?.goalEvent)!, idStatsTeam: statsTeam.id)
+            })
+            
+            let goalAway = self.awayStats!.goalInGame.count + self.awayStats!.goalFreekick.count + self.awayStats!.goalPenalty.count + self.homeStats!.goalAgainst.count
+            let goalHome = self.homeStats!.goalInGame.count + self.homeStats!.goalFreekick.count + self.homeStats!.goalPenalty.count + self.awayStats!.goalAgainst.count
+            let match: Match
+            match = (self.homeStats?.match)!
+            match.awayGoal = goalAway
+            match.homeGoal = goalHome
+            match.state = 1
+            match.id = (self.homeStats?.idMatch)!
+            print("---------- \(match.id)/\((self.homeStats?.idMatch)!) ----------")
+            Alamoquest.updateMatch(match: match)
             
             let homeView = SelectMatchViewController(nibName: "SelectMatchViewController", bundle: nil)
             self.navigationController?.pushViewController(homeView, animated: true)
@@ -467,6 +609,16 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
         alert.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
         
         self.present(alert, animated: true)
+    }
+    
+    func sendMatchEvents(events: Array<MatchEventPlayer>, idStatsTeam: Int) {
+        var allEvents = [[String: Any]]()
+        for e in events {
+            e.idStatsMatch = idStatsTeam
+            allEvents.append(e.toJSON())
+            print(e.toJSON())
+        }
+        Alamoquest.postAllEvents(allEvents: allEvents)
     }
     
     @objc func stateChanged() {
@@ -482,7 +634,7 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
     
     func setValues(teamStats: StatsTeam?) {
-
+        
         passSucceed.text = "\(teamStats?.passSucceed ?? 0)"
         passFailed.text = "\(teamStats?.passFailed ?? 0)"
         duelWin.text = "\(teamStats?.duelWin ?? 0)"
@@ -510,69 +662,46 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
     
     
     func setMatchEvent(player: Player, minutes: Int, secondPlayer: Player?) {
+        var teamStats: StatsTeam
+        if (!self.switchTeam.isOn) {
+            teamStats = self.homeStats!
+        } else {
+            teamStats = self.awayStats!
+        }
         switch self.indexAction {
         case 0:
-            if (!self.switchTeam.isOn) {
-                let mEvent = MatchEventPlayer(player: player, matchEvent: MatchEvents.goalInGame, minute: minutes)
-                if(secondPlayer != nil) {
-                    mEvent.lastPass = secondPlayer
-                }
-                self.homeStats?.goalInGame.append(mEvent)
-                
-            } else {
-                let mEvent = MatchEventPlayer(player: player, matchEvent: MatchEvents.goalInGame, minute: minutes)
-                if(secondPlayer != nil) {
-                    mEvent.lastPass = secondPlayer
-                }
-                self.awayStats?.goalInGame.append(mEvent)
+            let mEvent = MatchEventPlayer(player: player, matchEvent: MatchEvents.goalInGame, minute: minutes)
+            teamStats.goalInGame.append(mEvent)
+            if(secondPlayer != nil) {
+                let mEventPass = MatchEventPlayer(player: secondPlayer!, matchEvent: MatchEvents.lastPass, minute: minutes)
+                teamStats.goalInGameLastPass.append(mEventPass)
+                //                    mEvent.lastPass = secondPlayer!
             }
             break
         case 1:
-            if (!self.switchTeam.isOn) {
-                let mEvent = MatchEventPlayer(player: player, matchEvent: MatchEvents.goalFreekick, minute: minutes)
-                if(secondPlayer != nil) {
-                    mEvent.lastPass = secondPlayer
-                }
-                self.homeStats?.goalFreekick.append(mEvent)
-            } else {
-                let mEvent = MatchEventPlayer(player: player, matchEvent: MatchEvents.goalFreekick, minute: minutes)
-                if(secondPlayer != nil) {
-                    mEvent.lastPass = secondPlayer
-                }
-                self.awayStats?.goalFreekick.append(mEvent)
+            let mEvent = MatchEventPlayer(player: player, matchEvent: MatchEvents.goalFreekick, minute: minutes)
+            teamStats.goalFreekick.append(mEvent)
+            if(secondPlayer != nil) {
+                let mEventPass = MatchEventPlayer(player: secondPlayer!, matchEvent: MatchEvents.lastPass, minute: minutes)
+                teamStats.goalInGameLastPass.append(mEventPass)
+                //                    mEvent.lastPass = secondPlayer!
             }
             break
         case 2:
-            if (!self.switchTeam.isOn) {
-                self.homeStats?.goalPenalty.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.goalPenalty, minute: minutes))
-            } else {
-                self.awayStats?.goalPenalty.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.goalPenalty, minute: minutes))
-            }
+            teamStats.goalPenalty.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.goalPenalty, minute: minutes))
             break
         case 3:
-            if (!self.switchTeam.isOn) {
-                self.homeStats?.goalAgainst.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.goalAgainst, minute: minutes))
-            } else {
-                self.awayStats?.goalAgainst.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.goalAgainst, minute: minutes))
-            }
+            teamStats.goalAgainst.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.goalAgainst, minute: minutes))
             break
         case 4:
-            if (!self.switchTeam.isOn) {
-                self.homeStats?.yellowCard.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.yellowCard, minute: minutes))
-            } else {
-                self.awayStats?.yellowCard.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.yellowCard, minute: minutes))
-            }
+            teamStats.yellowCard.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.yellowCard, minute: minutes))
             break
         case 5:
-            if (!self.switchTeam.isOn) {
-                self.homeStats?.redCard.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.redCard, minute: minutes))
-            } else {
-                self.awayStats?.redCard.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.redCard, minute: minutes))
-            }
+            teamStats.redCard.append(MatchEventPlayer(player: player, matchEvent: MatchEvents.redCard, minute: minutes))
             break
         case 6:
             let mEvent: MatchEventPlayer?
-            switch(self.indexFirstTF) {
+            switch(self.indexSecondTF) {
             case 0:
                 mEvent = MatchEventPlayer(player: player, matchEvent: MatchEvents.ballCapted, minute: minutes)
                 break
@@ -596,18 +725,13 @@ class GameBreakerViewController: UIViewController, UIPickerViewDataSource, UIPic
                 break
             }
             
-            if (!self.switchTeam.isOn) {
-                self.homeStats?.goalEvent.append(mEvent!)
-            } else {
-                self.awayStats?.goalEvent.append(mEvent!)
-            }
-            
+            teamStats.goalEvent.append(mEvent!)
             break
         default:
             break
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

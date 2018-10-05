@@ -23,8 +23,8 @@ class Team : Mappable {
         club <- map["club"]
     }
     
-    var id : Int!
-    var name : String!
+    var id = Int()
+    var name = String()
     var league = League()
     var club = Club()
     

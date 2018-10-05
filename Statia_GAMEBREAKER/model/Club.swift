@@ -26,13 +26,13 @@ class Club : Mappable {
         stadename <- map["stadename"]
     }
     
-    var id : Int?
-    var address : String?
-    var city : String?
-    var creationdate : String?
-    var department : Int?
-    var name : String?
-    var stadename : String?
+    var id = Int()
+    var address = String()
+    var city = String()
+    var creationdate = String()
+    var department = Int()
+    var name = String()
+    var stadename = String()
     
     
     

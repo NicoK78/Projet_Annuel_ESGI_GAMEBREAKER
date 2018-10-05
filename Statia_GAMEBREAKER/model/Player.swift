@@ -42,16 +42,16 @@ class Player :  Mappable {
         ]
     }
     
-    var id :Int!
-    var firstname : String!
-    var name : String!
+    var id = Int()
+    var firstname = String()
+    var name = String()
     var birhtDate = Date()
-    var poste : String!
-    var strongFoot :String!
-    var mobile : String!
-    var email :String!
-    var city : String!
-    var idTeam : Int!
+    var poste = String()
+    var strongFoot = String()
+    var mobile = String()
+    var email = String()
+    var city = String()
+    var idTeam = Int()
 }
 //import Foundation
 //

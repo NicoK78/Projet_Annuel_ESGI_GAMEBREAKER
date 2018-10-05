@@ -44,15 +44,18 @@ class SelectMatchViewController: UIViewController, UIPickerViewDataSource, UIPic
             homeView.awayTeam = matches[pickerIndex-1].away
             
             homeView.homeStats = StatsTeam()
-            homeView.homeStats?.team = matches[pickerIndex-1].home
-            homeView.homeStats?.idTeam = homeView.homeStats?.team?.id
+            homeView.homeStats!.team = matches[pickerIndex-1].home
+            homeView.homeStats!.idTeam = homeView.homeStats!.team.id
             homeView.awayStats = StatsTeam()
-            homeView.awayStats?.team = matches[pickerIndex-1].away
-            homeView.awayStats?.idTeam = homeView.awayStats?.team?.id
+            homeView.awayStats!.team = matches[pickerIndex-1].away
+            homeView.awayStats!.idTeam = homeView.awayStats!.team.id
             
-            homeView.homeStats?.idMatch = matches[pickerIndex-1].id
-            homeView.awayStats?.idMatch = matches[pickerIndex-1].id
+            homeView.homeStats!.idMatch = matches[pickerIndex-1].id
+            homeView.awayStats!.idMatch = matches[pickerIndex-1].id
+            print("--------> \(homeView.awayStats!.toJSON()) <--------")
+            print("HEEEERE")
             self.navigationController?.pushViewController(homeView, animated: true)
+            print("NOT HEEEERE")
         }
         
     }
@@ -69,6 +72,7 @@ class SelectMatchViewController: UIViewController, UIPickerViewDataSource, UIPic
         svInfos.layer.cornerRadius = 15.0
         svInfos.layer.borderWidth = 5.0
         svInfos.layer.borderColor = UIColor.cyan.cgColor
+        print("-------> ANALYSTE : \(UserDefaults.standard.integer(forKey: "idAnalyst"))")
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,7 +95,7 @@ class SelectMatchViewController: UIViewController, UIPickerViewDataSource, UIPic
         if(row == 0) {
             return "SELECTIONNEZ UN MATCH"
         } else {
-            return "\(matches[row-1].home.name!) - \(matches[row-1].away.name!)"
+            return "\(matches[row-1].home.name) - \(matches[row-1].away.name)"
         }
     }
     
@@ -115,12 +119,12 @@ class SelectMatchViewController: UIViewController, UIPickerViewDataSource, UIPic
         svHome.removeAllArrangedSubviews()
         svAway.removeAllArrangedSubviews()
         if(row != 0) {
-            Alamoquest.getPlayerByTeam(id: (matches[row-1].home.id)!) { (players) in
+            Alamoquest.getPlayerByTeam(id: (matches[row-1].home.id)) { (players) in
                 for player in players {
                     self.svHome.addArrangedSubview(self.addLabelInSV(player: player, width: self.svHome.frame.size.width))
                 }
             }
-            Alamoquest.getPlayerByTeam(id: (matches[row-1].away.id)!) { (players) in
+            Alamoquest.getPlayerByTeam(id: (matches[row-1].away.id)) { (players) in
                 for player in players {
                     self.svAway.addArrangedSubview(self.addLabelInSV(player: player, width: self.svAway.frame.size.width))
                 }
@@ -132,7 +136,7 @@ class SelectMatchViewController: UIViewController, UIPickerViewDataSource, UIPic
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: 22))
         
         label.textAlignment = NSTextAlignment.center
-        label.text = "N°X \(player.name!) \(player.firstname!)"
+        label.text = "N°X \(player.name) \(player.firstname)"
         label.font = label.font.withSize(20)
         
         return label
@@ -152,6 +156,7 @@ class SelectMatchViewController: UIViewController, UIPickerViewDataSource, UIPic
         Alamoquest.getMatchToAnalyze { (matchs) in
             print(matchs.toJSON())
             for match in matchs {
+                print(match.id)
                 self.matches.append(match)
                 self.matchesStr.append(match.home.name + " - " + match.away.name)
             }

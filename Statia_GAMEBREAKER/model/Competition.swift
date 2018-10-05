@@ -22,7 +22,7 @@ class Competition : Mappable {
         
     }
     
-    var id : Int!
-    var name: String!
+    var id = Int()
+    var name = String()
 }
 

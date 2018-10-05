@@ -27,21 +27,21 @@ enum MatchEvents {
 
 class MatchEventPlayer: Mappable {
     
-    var player: Player?
-    var lastPass: Player?
+    var player = Player()
+    var lastPass = Player()
     var matchEvent: MatchEvents?
     
-    var idMatchEvent: Int!
-    var idStatsMatch: Int!
-    var idPlayer: Int!
-    var minute: Int!
-    var event: String!
+    var idMatchEvent = Int()
+    var idStatsMatch = Int()
+    var idPlayer = Int()
+    var minute = Int()
+    var event = String()
     
     init() {}
     init(player: Player, matchEvent: MatchEvents, minute: Int) {
         self.player = player
-        self.idPlayer = (player.id)!
-        print("TEST ID : \(player.id) \(player.id!) - \(self.idPlayer) \(self.idPlayer!)")
+        self.idPlayer = (player.id)
+        print("TEST ID : \(player.id) \(player.id) - \(self.idPlayer) \(self.idPlayer)")
         self.minute = minute
         
         self.matchEvent = matchEvent
@@ -64,27 +64,45 @@ class MatchEventPlayer: Mappable {
         case MatchEvents.redCard:
             event = "Carton rouge"
             break
-        default:
-            event = ""
+        case MatchEvents.ballCapted:
+            event = "Ballon capté"
+            break
+        case MatchEvents.ballPushed:
+            event = "Ballon repoussé"
+            break
+        case MatchEvents.airInterceptionSucceed:
+            event = "Interception aérienne"
+            break
+        case MatchEvents.footInterceptionSucceed:
+            event = "Interception dans les pieds"
+            break
+        case MatchEvents.airInterceptionFailed:
+            event = "Interception aérienne ratée"
+            break
+        case MatchEvents.footInterceptionFailed:
+            event = "Interception dans les pieds ratée"
+            break
+        case MatchEvents.lastPass:
+            event = "Passe décisive"
             break
         }
     }
     
     func mapping(map: Map) {
         idMatchEvent <- map["idMatchEvent"]
-        idStatsMatch <- map["idStatsMatch"]
-        idPlayer <- map["idPlayer"]
+        idStatsMatch <- map["statsMatch"]
+        idPlayer <- map["player"]
         minute <- map["minute"]
         event <- map["event"]
     }
     
     func toJSON() -> [String: Any] {
         return [
-            "idMatchEvent": idMatchEvent as Any,
-            "idStatsMatch": idStatsMatch as Any,
-            "idPlayer": idPlayer as Any,
-            "minute": minute as Any,
-            "event": event as Any
+//            "idMatchEvent": idMatchEvent,
+            "statsMatch": idStatsMatch,
+            "player": idPlayer,
+            "minute": minute,
+            "event": event
         ]
     }
     

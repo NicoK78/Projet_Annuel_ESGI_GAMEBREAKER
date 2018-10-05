@@ -11,6 +11,7 @@
 		03677C5D20FE1179008BEDBB /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03677C5C20FE1179008BEDBB /* Club.swift */; };
 		03677C5F20FE1182008BEDBB /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03677C5E20FE1182008BEDBB /* League.swift */; };
 		03677C6120FE11CA008BEDBB /* Competition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03677C6020FE11CA008BEDBB /* Competition.swift */; };
+		0388E03E2163CE6D008F421D /* Analyst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0388E03D2163CE6C008F421D /* Analyst.swift */; };
 		038A722820F66F4C008A3A06 /* StatsTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A722720F66F4C008A3A06 /* StatsTeam.swift */; };
 		038A722A20F6B73E008A3A06 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A722920F6B73D008A3A06 /* Player.swift */; };
 		038A722C20F6B973008A3A06 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A722B20F6B973008A3A06 /* Team.swift */; };
@@ -40,6 +41,7 @@
 		03677C5C20FE1179008BEDBB /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		03677C5E20FE1182008BEDBB /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
 		03677C6020FE11CA008BEDBB /* Competition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Competition.swift; sourceTree = "<group>"; };
+		0388E03D2163CE6C008F421D /* Analyst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analyst.swift; sourceTree = "<group>"; };
 		038A722720F66F4C008A3A06 /* StatsTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTeam.swift; sourceTree = "<group>"; };
 		038A722920F6B73D008A3A06 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		038A722B20F6B973008A3A06 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				03677C5C20FE1179008BEDBB /* Club.swift */,
 				03677C5E20FE1182008BEDBB /* League.swift */,
 				03677C6020FE11CA008BEDBB /* Competition.swift */,
+				0388E03D2163CE6C008F421D /* Analyst.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -192,6 +195,10 @@
 		03E5AC0E20DE76F9001F1E07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					1,
+					2,
+				);
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Statia;
@@ -297,6 +304,7 @@
 				03E5AC1A20DE76FA001F1E07 /* AppDelegate.swift in Sources */,
 				03677C6120FE11CA008BEDBB /* Competition.swift in Sources */,
 				03FCCFEA20FD1C04006E84C5 /* MatchEventPlayer.swift in Sources */,
+				0388E03E2163CE6D008F421D /* Analyst.swift in Sources */,
 				03E5AC4620E979B0001F1E07 /* SelectMatchViewController.swift in Sources */,
 				038A722A20F6B73E008A3A06 /* Player.swift in Sources */,
 				038A722E20F6BA4D008A3A06 /* Match.swift in Sources */,
